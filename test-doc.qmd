@@ -14,6 +14,9 @@ editor: visual
 
 library(tidyverse) # general use package 
 library(lterdatasampler) # package of datasets
+library(NatParksPalettes) # package for color palettes
+library(paletteer)
+library(viridis)
 
 data(pie_crab) # crab size dataset
 ```
@@ -26,11 +29,13 @@ data(pie_crab) # crab size dataset
 # base layer: ggplot
 ggplot(data = pie_crab, # dataset
        aes(x = latitude, # x-axis should be latitude, y-axis is crab size 
-           y = size)) + 
+           y = size,
+           color = site)) + 
   #first layer: points to represent individual crabs
-  geom_point()
-
-
+  geom_point() + 
+  scale_color_viridis(discrete = TRUE, # change the colors 
+                     option = "plasma") + 
+  theme_minimal() # change the default theme 
 ```
 
 
